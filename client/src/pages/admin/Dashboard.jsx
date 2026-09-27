@@ -11,6 +11,8 @@ import {
   Inbox,
   ShieldCheck,
   Loader2,
+  Sparkles,
+  ArrowUpRight,
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -41,26 +43,59 @@ export default function Dashboard() {
   }
 
   const counts = data?.data?.counts || {}
+  const totalContent =
+    (counts.departments || 0) +
+    (counts.staff || 0) +
+    (counts.programs || 0) +
+    (counts.services || 0) +
+    (counts.news || 0) +
+    (counts.pages || 0)
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Welcome back, {user?.name?.split(' ')[0]}</h1>
-        <p className="text-sm text-muted-foreground">Here's what's happening on the BMU website today.</p>
+      <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-6 text-primary-foreground shadow-lg shadow-primary/20 sm:p-8">
+        <div className="absolute -right-10 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
+        <div className="absolute -bottom-16 left-1/3 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+        <div className="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div>
+            <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">
+              <Sparkles className="h-3.5 w-3.5" /> Welcome back
+            </span>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{user?.name?.split(' ')[0]}, here's your site today</h1>
+            <p className="mt-1 max-w-md text-sm text-primary-foreground/80">
+              A quick snapshot of everything happening across the BMU website and hospital dashboard.
+            </p>
+          </div>
+          <div className="flex gap-6 sm:gap-10">
+            <div>
+              <div className="text-3xl font-bold">{totalContent}</div>
+              <div className="text-xs text-primary-foreground/75">Published items</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold">{counts.newInquiries ?? 0}</div>
+              <div className="text-xs text-primary-foreground/75">New inquiries</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {statCards.map((card) => (
+        {statCards.map((card, i) => (
           <Link key={card.key} to={card.to}>
-            <Card className="transition-shadow hover:shadow-md">
+            <Card className="group rounded-2xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
               <CardContent className="flex items-center gap-4 pt-6">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors ${
+                    i % 2 === 0 ? 'bg-primary/10 text-primary' : 'bg-accent text-accent-foreground'
+                  }`}
+                >
                   <card.icon className="h-5 w-5" />
                 </span>
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="text-2xl font-bold">{counts[card.key] ?? 0}</div>
-                  <div className="text-xs text-muted-foreground">{card.label}</div>
+                  <div className="truncate text-xs text-muted-foreground">{card.label}</div>
                 </div>
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/0 transition-colors group-hover:text-primary" />
               </CardContent>
             </Card>
           </Link>
@@ -68,14 +103,14 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
+        <Card className="rounded-2xl">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-base">
-              <Inbox className="h-4 w-4" /> Recent Inquiries
+              <Inbox className="h-4 w-4 text-primary" /> Recent Inquiries
             </CardTitle>
-            <Badge variant="secondary">{counts.newInquiries ?? 0} new</Badge>
+            <Badge className="bg-brand-gradient text-primary-foreground">{counts.newInquiries ?? 0} new</Badge>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="space-y-2.5">
             {(data?.data?.recentInquiries || []).length === 0 && (
               <p className="text-sm text-muted-foreground">No inquiries yet.</p>
             )}
@@ -83,13 +118,13 @@ export default function Dashboard() {
               <Link
                 key={inq._id}
                 to="/admin/inquiries"
-                className="flex items-center justify-between rounded-md border p-3 text-sm hover:bg-accent"
+                className="flex items-center justify-between rounded-xl border p-3 text-sm transition-colors hover:bg-secondary/60"
               >
-                <div>
-                  <div className="font-medium">{inq.name}</div>
-                  <div className="text-xs text-muted-foreground">{inq.subject || inq.message?.slice(0, 40)}</div>
+                <div className="min-w-0">
+                  <div className="truncate font-medium">{inq.name}</div>
+                  <div className="truncate text-xs text-muted-foreground">{inq.subject || inq.message?.slice(0, 40)}</div>
                 </div>
-                <Badge variant="outline" className="capitalize">
+                <Badge variant="outline" className="ml-2 shrink-0 capitalize">
                   {inq.type}
                 </Badge>
               </Link>
@@ -97,13 +132,13 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-2xl">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Newspaper className="h-4 w-4" /> Recent News Activity
+              <Newspaper className="h-4 w-4 text-primary" /> Recent News Activity
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="space-y-2.5">
             {(data?.data?.recentNews || []).length === 0 && (
               <p className="text-sm text-muted-foreground">No news posts yet.</p>
             )}
@@ -111,10 +146,15 @@ export default function Dashboard() {
               <Link
                 key={n._id}
                 to="/admin/news"
-                className="flex items-center justify-between rounded-md border p-3 text-sm hover:bg-accent"
+                className="flex items-center justify-between rounded-xl border p-3 text-sm transition-colors hover:bg-secondary/60"
               >
-                <div className="font-medium">{n.title}</div>
-                <Badge variant={n.status === 'published' ? 'default' : 'secondary'}>{n.status}</Badge>
+                <div className="truncate font-medium">{n.title}</div>
+                <Badge
+                  className="ml-2 shrink-0"
+                  variant={n.status === 'published' ? 'default' : 'secondary'}
+                >
+                  {n.status}
+                </Badge>
               </Link>
             ))}
           </CardContent>
@@ -122,9 +162,9 @@ export default function Dashboard() {
       </div>
 
       {isAdmin && (
-        <Card>
+        <Card className="rounded-2xl">
           <CardContent className="flex items-center gap-4 pt-6">
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <ShieldCheck className="h-5 w-5" />
             </span>
             <div className="flex-1">

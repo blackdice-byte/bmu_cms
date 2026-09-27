@@ -24,56 +24,65 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brand-from: var(--brand-from);
+  --color-brand-to: var(--brand-to);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 6px);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.18 0.03 240);
+  --radius: 0.9rem;
+  --background: oklch(0.995 0.003 300);
+  --foreground: oklch(0.2 0.04 296);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.03 240);
+  --card-foreground: oklch(0.2 0.04 296);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.03 240);
-  /* BMU brand: deep medical teal/blue */
-  --primary: oklch(0.42 0.11 220);
-  --primary-foreground: oklch(0.98 0.01 220);
-  --secondary: oklch(0.96 0.02 220);
-  --secondary-foreground: oklch(0.3 0.06 220);
-  --muted: oklch(0.96 0.01 240);
-  --muted-foreground: oklch(0.5 0.03 240);
-  --accent: oklch(0.9 0.08 165);
-  --accent-foreground: oklch(0.25 0.06 165);
+  --popover-foreground: oklch(0.2 0.04 296);
+  /* BMU brand: rich purple/violet, per design refresh */
+  --primary: oklch(0.48 0.22 296);
+  --primary-foreground: oklch(0.98 0.01 296);
+  --secondary: oklch(0.955 0.02 296);
+  --secondary-foreground: oklch(0.33 0.1 296);
+  --muted: oklch(0.96 0.012 292);
+  --muted-foreground: oklch(0.52 0.03 292);
+  --accent: oklch(0.93 0.07 322);
+  --accent-foreground: oklch(0.34 0.13 322);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0.01 20);
-  --border: oklch(0.91 0.01 240);
-  --input: oklch(0.91 0.01 240);
-  --ring: oklch(0.42 0.11 220 / 0.5);
+  --border: oklch(0.91 0.015 292);
+  --input: oklch(0.91 0.015 292);
+  --ring: oklch(0.48 0.22 296 / 0.5);
+  /* Gradient stops for hero/brand accents (shades of purple) */
+  --brand-from: oklch(0.5 0.24 300);
+  --brand-to: oklch(0.63 0.24 328);
+  --brand-glow: oklch(0.75 0.14 305 / 0.4);
 }
 
 .dark {
-  --background: oklch(0.16 0.02 240);
-  --foreground: oklch(0.96 0.01 240);
-  --card: oklch(0.2 0.02 240);
-  --card-foreground: oklch(0.96 0.01 240);
-  --popover: oklch(0.2 0.02 240);
-  --popover-foreground: oklch(0.96 0.01 240);
-  --primary: oklch(0.72 0.1 195);
-  --primary-foreground: oklch(0.15 0.02 240);
-  --secondary: oklch(0.28 0.02 240);
-  --secondary-foreground: oklch(0.96 0.01 240);
-  --muted: oklch(0.26 0.02 240);
-  --muted-foreground: oklch(0.68 0.02 240);
-  --accent: oklch(0.3 0.05 165);
-  --accent-foreground: oklch(0.93 0.02 165);
+  --background: oklch(0.15 0.025 292);
+  --foreground: oklch(0.96 0.01 292);
+  --card: oklch(0.19 0.03 293);
+  --card-foreground: oklch(0.96 0.01 292);
+  --popover: oklch(0.19 0.03 293);
+  --popover-foreground: oklch(0.96 0.01 292);
+  --primary: oklch(0.72 0.18 300);
+  --primary-foreground: oklch(0.14 0.02 292);
+  --secondary: oklch(0.28 0.035 293);
+  --secondary-foreground: oklch(0.95 0.01 292);
+  --muted: oklch(0.25 0.025 293);
+  --muted-foreground: oklch(0.68 0.02 292);
+  --accent: oklch(0.32 0.09 322);
+  --accent-foreground: oklch(0.93 0.03 322);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.98 0.01 20);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 18%);
-  --ring: oklch(0.72 0.1 195 / 0.5);
+  --ring: oklch(0.72 0.18 300 / 0.5);
+  --brand-from: oklch(0.62 0.2 300);
+  --brand-to: oklch(0.68 0.2 328);
+  --brand-glow: oklch(0.5 0.2 305 / 0.45);
 }
 
 @layer base {
@@ -82,5 +91,17 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-brand-gradient {
+    background-image: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+  }
+  .text-brand-gradient {
+    background-image: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
 }

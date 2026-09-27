@@ -44,6 +44,9 @@ export const apiSlice = createApi({
     submitInquiry: builder.mutation({
       query: (body) => ({ url: '/inquiries', method: 'post', data: body }),
     }),
+    getAvailability: builder.query({
+      query: ({ department, date }) => ({ url: '/inquiries/availability', params: { department, date } }),
+    }),
   }),
 })
 
@@ -113,4 +116,5 @@ export const {
   useDeleteUserMutation,
 
   useSubmitInquiryMutation,
+  useGetAvailabilityQuery,
 } = apiSlice

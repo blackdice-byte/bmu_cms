@@ -10,6 +10,7 @@ const inquirySchema = new mongoose.Schema(
     message: { type: String, required: true },
     department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department' },
     preferredDate: { type: Date },
+    preferredTime: { type: String }, // e.g. "09:00" - paired with preferredDate for appointment slot booking
     status: { type: String, enum: ['new', 'in-progress', 'resolved'], default: 'new' },
     handledBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   },

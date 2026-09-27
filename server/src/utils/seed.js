@@ -398,6 +398,7 @@ const seedDatabase = async ({ destroy = false } = {}) => {
       message: 'I would like to book an antenatal check-up appointment for next week.',
       department: byName('Obstetrics & Gynaecology')._id,
       preferredDate: inDays(7),
+      preferredTime: '10:00',
       status: 'new',
     },
     {

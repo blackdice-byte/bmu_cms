@@ -1,6 +1,7 @@
 const express = require('express');
 const { protect, authorize } = require('../middleware/auth');
 const {
+  getAvailability,
   createInquiry,
   getInquiries,
   getInquiry,
@@ -10,7 +11,8 @@ const {
 
 const router = express.Router();
 
-// Public: anyone can submit a contact/appointment request
+// Public: anyone can check open appointment slots or submit a request
+router.get('/availability', getAvailability);
 router.post('/', createInquiry);
 
 // Admin + editor + viewer: everyone with dashboard access can view inquiries

@@ -180,7 +180,8 @@ export default function InquiriesPage() {
           )}
           {viewing?.preferredDate && (
             <p className="text-sm text-muted-foreground">
-              Preferred date: {format(new Date(viewing.preferredDate), 'PPP')}
+              Appointment: {format(new Date(viewing.preferredDate), 'PPP')}
+              {viewing?.preferredTime && ` at ${viewing.preferredTime}`}
             </p>
           )}
         </DialogContent>
