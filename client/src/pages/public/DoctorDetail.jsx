@@ -21,7 +21,7 @@ export default function DoctorDetail() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="flex flex-col items-center gap-6 border-b pb-8 text-center sm:flex-row sm:text-left">
-        <img src={doc.photo} alt={doc.name} className="h-32 w-32 shrink-0 rounded-full object-cover" />
+        <img src={doc.photo} alt={doc.name} className="h-32 w-32 shrink-0 rounded-lg object-cover" />
         <div>
           <h1 className="text-2xl font-bold">{doc.name}</h1>
           <p className="text-muted-foreground">{doc.title}</p>

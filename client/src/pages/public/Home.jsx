@@ -38,13 +38,16 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute -left-40 -top-40 h-96 w-96 rounded-full bg-brand-gradient opacity-20 blur-3xl" />
-        <div className="pointer-events-none absolute -right-32 top-20 h-80 w-80 rounded-full bg-brand-gradient opacity-15 blur-3xl" />
+      <section className="relative overflow-hidden bg-hero-mesh">
+        <div className="bg-dot-grid pointer-events-none absolute inset-0" />
+        <div className="pointer-events-none absolute -left-32 -top-32 h-80 w-80 rounded-full bg-brand-gradient opacity-25 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-gradient-to-br from-fuchsia-400/40 to-primary/20 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-violet-400/20 blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
 
         <div className="relative mx-auto grid max-w-7xl gap-14 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
           <div>
-            <span className="mb-5 inline-flex items-center gap-1.5 rounded-full border bg-secondary/60 px-3.5 py-1.5 text-xs font-semibold text-secondary-foreground">
+            <span className="mb-5 inline-flex items-center gap-1.5 rounded-md border bg-secondary/60 px-3.5 py-1.5 text-xs font-semibold text-secondary-foreground">
               <Sparkles className="h-3.5 w-3.5 text-primary" /> Bayelsa Medical University
             </span>
             <h1 className="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl">
@@ -57,12 +60,12 @@ export default function Home() {
               our university teaching hospital in Yenagoa, Bayelsa State.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-full bg-brand-gradient px-7 shadow-lg shadow-primary/25 hover:opacity-90">
+              <Button asChild size="lg" className="bg-brand-gradient px-7 shadow-lg shadow-primary/25 hover:opacity-90">
                 <Link to="/contact">
                   Book an Appointment <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full px-7">
+              <Button asChild size="lg" variant="outline" className="px-7">
                 <Link to="/programs">Explore Programs</Link>
               </Button>
             </div>
@@ -77,7 +80,11 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <div className="relative overflow-hidden rounded-[2rem] bg-brand-gradient p-10 shadow-2xl shadow-primary/25 sm:p-14">
+            <div
+              className="pointer-events-none absolute -inset-6 rounded-lg blur-2xl"
+              style={{ background: 'var(--brand-glow)' }}
+            />
+            <div className="relative overflow-hidden rounded-lg bg-brand-gradient p-10 shadow-2xl shadow-primary/25 sm:p-14">
               <Stethoscope className="absolute -right-6 -top-6 h-40 w-40 text-white/10" strokeWidth={1} />
               <HeartPulse className="absolute -bottom-8 left-6 h-32 w-32 text-white/10" strokeWidth={1} />
               <div className="relative text-primary-foreground">
@@ -90,7 +97,7 @@ export default function Home() {
             </div>
 
             {/* Floating stat card, overlapping like a dashboard widget */}
-            <Card className="absolute -bottom-8 -left-6 w-56 rounded-2xl border-0 shadow-xl shadow-primary/15 sm:-left-10">
+            <Card className="absolute -bottom-8 -left-6 w-56 rounded-lg border-0 shadow-xl shadow-primary/15 sm:-left-10">
               <CardContent className="flex items-center gap-3 pt-5">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Building2 className="h-5 w-5" />
@@ -102,7 +109,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="absolute -right-4 -top-6 rounded-2xl border-0 shadow-xl shadow-primary/15 sm:-right-8">
+            <Card className="absolute -right-4 -top-6 rounded-lg border-0 shadow-xl shadow-primary/15 sm:-right-8">
               <CardContent className="flex items-center gap-2 px-4 py-3">
                 <CalendarDays className="h-4 w-4 text-primary" />
                 <span className="text-xs font-semibold">24/7 Emergency Care</span>
@@ -122,7 +129,7 @@ export default function Home() {
             { icon: HeartPulse, label: 'Emergency Care', value: '24/7' },
           ].map((stat) => (
             <div key={stat.label} className="flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-background text-primary shadow-sm">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-background text-primary shadow-sm">
                 <stat.icon className="h-5 w-5" />
               </span>
               <div>
@@ -141,7 +148,7 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-wider text-primary">Clinical &amp; Academic</p>
             <h2 className="mt-1 text-3xl font-bold tracking-tight">Our Departments</h2>
           </div>
-          <Button asChild variant="ghost" className="rounded-full">
+          <Button asChild variant="ghost">
             <Link to="/departments">
               View all <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
@@ -181,7 +188,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">Our People</p>
                 <h2 className="mt-1 text-3xl font-bold tracking-tight">Meet Our Doctors</h2>
               </div>
-              <Button asChild variant="ghost" className="rounded-full">
+              <Button asChild variant="ghost">
                 <Link to="/doctors">
                   View all <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -196,11 +203,11 @@ export default function Home() {
                     <Card className="h-full text-center transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
                       <CardContent className="pt-6">
                         <div className="relative mx-auto h-24 w-24">
-                          <div className="absolute inset-0 rounded-full bg-brand-gradient opacity-20 blur-md" />
+                          <div className="absolute inset-0 rounded-lg bg-brand-gradient opacity-20 blur-md" />
                           <img
                             src={doc.photo}
                             alt={doc.name}
-                            className="relative h-24 w-24 rounded-full border-2 border-background object-cover shadow-md"
+                            className="relative h-24 w-24 rounded-lg border-2 border-background object-cover shadow-md"
                           />
                         </div>
                         <h3 className="mt-4 font-semibold">{doc.name}</h3>
@@ -224,7 +231,7 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-primary">Newsroom</p>
                 <h2 className="mt-1 text-3xl font-bold tracking-tight">Latest News</h2>
               </div>
-              <Button asChild variant="ghost" className="rounded-full">
+              <Button asChild variant="ghost">
                 <Link to="/news">
                   View all <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -295,7 +302,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2rem] bg-brand-gradient px-8 py-16 text-center text-primary-foreground shadow-2xl shadow-primary/25 sm:px-16">
+        <div className="relative overflow-hidden rounded-lg bg-brand-gradient px-8 py-16 text-center text-primary-foreground shadow-2xl shadow-primary/25 sm:px-16">
           <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -right-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="relative">
@@ -304,7 +311,7 @@ export default function Home() {
               Book an appointment with one of our specialists in just a few clicks, or send us a
               message and our team will get back to you.
             </p>
-            <Button asChild size="lg" variant="secondary" className="mt-8 rounded-full px-8">
+            <Button asChild size="lg" variant="secondary" className="mt-8 px-8">
               <Link to="/contact">
                 Get in touch <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

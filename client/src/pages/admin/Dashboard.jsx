@@ -53,12 +53,12 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-6 text-primary-foreground shadow-lg shadow-primary/20 sm:p-8">
+      <div className="relative overflow-hidden rounded-lg bg-brand-gradient p-6 text-primary-foreground shadow-lg shadow-primary/20 sm:p-8">
         <div className="absolute -right-10 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
         <div className="absolute -bottom-16 left-1/3 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
         <div className="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <div>
-            <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">
+            <span className="mb-3 inline-flex items-center gap-1.5 rounded-md bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" /> Welcome back
             </span>
             <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{user?.name?.split(' ')[0]}, here's your site today</h1>
@@ -82,7 +82,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {statCards.map((card, i) => (
           <Link key={card.key} to={card.to}>
-            <Card className="group rounded-2xl transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
+            <Card className="group rounded-lg transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/10">
               <CardContent className="flex items-center gap-4 pt-6">
                 <span
                   className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors ${
@@ -103,7 +103,7 @@ export default function Dashboard() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card className="rounded-2xl">
+        <Card className="rounded-lg">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-base">
               <Inbox className="h-4 w-4 text-primary" /> Recent Inquiries
@@ -132,7 +132,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-2xl">
+        <Card className="rounded-lg">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <Newspaper className="h-4 w-4 text-primary" /> Recent News Activity
@@ -162,7 +162,7 @@ export default function Dashboard() {
       </div>
 
       {isAdmin && (
-        <Card className="rounded-2xl">
+        <Card className="rounded-lg">
           <CardContent className="flex items-center gap-4 pt-6">
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <ShieldCheck className="h-5 w-5" />

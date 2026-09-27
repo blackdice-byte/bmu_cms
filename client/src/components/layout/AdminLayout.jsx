@@ -29,16 +29,16 @@ export default function AdminLayout() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-secondary/70 via-muted/50 to-accent/20 p-3 lg:p-4">
       <div className="mx-auto flex max-w-[1600px] items-start gap-4">
-        <aside className="sticky top-4 hidden h-[calc(100vh-2rem)] w-64 shrink-0 rounded-3xl border bg-background/90 shadow-sm shadow-primary/5 backdrop-blur lg:flex lg:flex-col">
+        <aside className="sticky top-4 hidden h-[calc(100vh-2rem)] w-64 shrink-0 rounded-lg border bg-background/90 shadow-sm shadow-primary/5 backdrop-blur lg:flex lg:flex-col">
           <AdminSidebar />
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col gap-4">
-          <header className="sticky top-4 z-30 flex h-16 shrink-0 items-center justify-between rounded-3xl border bg-background/90 px-4 shadow-sm shadow-primary/5 backdrop-blur sm:px-6">
+          <header className="sticky top-4 z-30 flex h-16 shrink-0 items-center justify-between rounded-lg border bg-background/90 px-4 shadow-sm shadow-primary/5 backdrop-blur sm:px-6">
             <div className="flex items-center gap-3">
               <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full lg:hidden">
+                  <Button variant="ghost" size="icon" className="lg:hidden">
                     <Menu className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
@@ -53,14 +53,14 @@ export default function AdminLayout() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button asChild variant="outline" size="sm" className="hidden rounded-full sm:inline-flex">
+              <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
                 <Link to="/" target="_blank" rel="noreferrer">
                   View site <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
                 </Link>
               </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-2 rounded-full ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                  <button className="flex items-center gap-2 rounded-md ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                     <Avatar className="h-9 w-9">
                       <AvatarFallback className="bg-brand-gradient text-xs text-primary-foreground">
                         {initials}
@@ -68,7 +68,7 @@ export default function AdminLayout() {
                     </Avatar>
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56 rounded-2xl">
+                <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>
                     <div className="text-sm font-medium">{user?.name}</div>
                     <div className="text-xs font-normal text-muted-foreground">{user?.email}</div>
@@ -82,7 +82,7 @@ export default function AdminLayout() {
             </div>
           </header>
 
-          <main className="flex-1 rounded-3xl border bg-background/70 p-4 shadow-sm shadow-primary/5 sm:p-6">
+          <main className="flex-1 rounded-lg border bg-background/70 p-4 shadow-sm shadow-primary/5 sm:p-6">
             <Outlet />
           </main>
         </div>

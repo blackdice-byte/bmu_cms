@@ -66,7 +66,7 @@ export default function DepartmentDetail() {
               <Link key={doc._id} to={`/doctors/${doc.slug}`}>
                 <Card className="transition-shadow hover:shadow-md">
                   <CardContent className="flex items-center gap-3 pt-6">
-                    <img src={doc.photo} alt={doc.name} className="h-12 w-12 rounded-full object-cover" />
+                    <img src={doc.photo} alt={doc.name} className="h-12 w-12 rounded-md object-cover" />
                     <div>
                       <div className="text-sm font-semibold">{doc.name}</div>
                       <div className="text-xs text-muted-foreground">{doc.title}</div>

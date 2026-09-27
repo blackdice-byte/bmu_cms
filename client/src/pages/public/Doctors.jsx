@@ -37,7 +37,7 @@ export default function Doctors() {
               <Link key={doc._id} to={`/doctors/${doc.slug}`}>
                 <Card className="h-full text-center transition-shadow hover:shadow-lg">
                   <CardContent className="pt-6">
-                    <img src={doc.photo} alt={doc.name} className="mx-auto h-24 w-24 rounded-full object-cover" />
+                    <img src={doc.photo} alt={doc.name} className="mx-auto h-24 w-24 rounded-lg object-cover" />
                     <h3 className="mt-4 font-semibold">{doc.name}</h3>
                     <p className="text-sm text-muted-foreground">{doc.title}</p>
                     {doc.department?.name && (
