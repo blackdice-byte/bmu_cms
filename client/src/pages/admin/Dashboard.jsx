@@ -13,6 +13,7 @@ import {
   Loader2,
   Sparkles,
   ArrowUpRight,
+  UserRound,
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -20,6 +21,7 @@ import { useGetOverviewQuery } from '@/features/api/apiSlice'
 import { useAuth } from '@/hooks/useAuth'
 
 const statCards = [
+  { key: 'patients', label: 'Registered Patients', icon: UserRound, to: '/admin/patients' },
   { key: 'departments', label: 'Departments', icon: Building2, to: '/admin/departments' },
   { key: 'staff', label: 'Staff & Doctors', icon: Users2, to: '/admin/staff' },
   { key: 'programs', label: 'Programs', icon: GraduationCap, to: '/admin/programs' },
@@ -53,7 +55,7 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="relative overflow-hidden rounded-lg bg-brand-gradient p-6 text-primary-foreground shadow-lg shadow-primary/20 sm:p-8">
+      <div className="relative overflow-hidden rounded-lg bg-brand-gradient p-6 text-brand-foreground shadow-lg shadow-primary/20 sm:p-8">
         <div className="absolute -right-10 -top-16 h-56 w-56 rounded-full bg-white/10 blur-2xl" />
         <div className="absolute -bottom-16 left-1/3 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
         <div className="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
@@ -62,18 +64,18 @@ export default function Dashboard() {
               <Sparkles className="h-3.5 w-3.5" /> Welcome back
             </span>
             <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{user?.name?.split(' ')[0]}, here's your site today</h1>
-            <p className="mt-1 max-w-md text-sm text-primary-foreground/80">
+            <p className="mt-1 max-w-md text-sm text-brand-foreground/80">
               A quick snapshot of everything happening across the BMU website and hospital dashboard.
             </p>
           </div>
           <div className="flex gap-6 sm:gap-10">
             <div>
               <div className="text-3xl font-bold">{totalContent}</div>
-              <div className="text-xs text-primary-foreground/75">Published items</div>
+              <div className="text-xs text-brand-foreground/75">Published items</div>
             </div>
             <div>
               <div className="text-3xl font-bold">{counts.newInquiries ?? 0}</div>
-              <div className="text-xs text-primary-foreground/75">New inquiries</div>
+              <div className="text-xs text-brand-foreground/75">New inquiries</div>
             </div>
           </div>
         </div>
@@ -108,7 +110,7 @@ export default function Dashboard() {
             <CardTitle className="flex items-center gap-2 text-base">
               <Inbox className="h-4 w-4 text-primary" /> Recent Inquiries
             </CardTitle>
-            <Badge className="bg-brand-gradient text-primary-foreground">{counts.newInquiries ?? 0} new</Badge>
+            <Badge className="bg-brand-gradient text-brand-foreground">{counts.newInquiries ?? 0} new</Badge>
           </CardHeader>
           <CardContent className="space-y-2.5">
             {(data?.data?.recentInquiries || []).length === 0 && (

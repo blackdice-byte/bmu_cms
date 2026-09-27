@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X, Cross } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import ThemeToggle from '@/components/ThemeToggle'
 import { cn } from '@/lib/utils'
 
 const links = [
@@ -23,7 +24,7 @@ export default function PublicNavbar() {
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5 font-semibold">
-          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-brand-gradient text-primary-foreground shadow-sm shadow-primary/30">
+          <span className="flex h-9 w-9 items-center justify-center rounded-md bg-brand-gradient text-brand-foreground shadow-sm shadow-primary/30">
             <Cross className="h-5 w-5" />
           </span>
           <span className="leading-tight">
@@ -51,21 +52,25 @@ export default function PublicNavbar() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
+          <ThemeToggle />
           <Button asChild variant="ghost">
             <Link to="/admin/login">Staff Login</Link>
           </Button>
-          <Button asChild className="bg-brand-gradient shadow-sm shadow-primary/25 hover:opacity-90">
+          <Button asChild className="bg-brand-gradient text-brand-foreground shadow-sm shadow-primary/25 hover:opacity-90">
             <Link to="/contact">Book Appointment</Link>
           </Button>
         </div>
 
-        <button
-          className="rounded-md p-2 text-foreground lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex items-center gap-1 lg:hidden">
+          <ThemeToggle />
+          <button
+            className="rounded-md p-2 text-foreground"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {open && (

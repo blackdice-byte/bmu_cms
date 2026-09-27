@@ -29,6 +29,8 @@ import ServicesPage from '@/pages/admin/services/ServicesPage'
 import GalleryPage from '@/pages/admin/gallery/GalleryPage'
 import EventsPage from '@/pages/admin/events/EventsPage'
 import InquiriesPage from '@/pages/admin/inquiries/InquiriesPage'
+import PatientsPage from '@/pages/admin/patients/PatientsPage'
+import PatientDetail from '@/pages/admin/patients/PatientDetail'
 import UsersPage from '@/pages/admin/users/UsersPage'
 
 export default function App() {
@@ -65,6 +67,8 @@ export default function App() {
           <Route path="/admin/gallery" element={<GalleryPage />} />
           <Route path="/admin/events" element={<EventsPage />} />
           <Route path="/admin/inquiries" element={<InquiriesPage />} />
+          <Route path="/admin/patients" element={<PatientsPage />} />
+          <Route path="/admin/patients/:id" element={<PatientDetail />} />
           <Route element={<ProtectedRoute roles={['admin']} />}>
             <Route path="/admin/users" element={<UsersPage />} />
           </Route>

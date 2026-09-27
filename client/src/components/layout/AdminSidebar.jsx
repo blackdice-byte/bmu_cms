@@ -12,6 +12,7 @@ import {
   Inbox,
   ShieldCheck,
   Cross,
+  UserRound,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/hooks/useAuth'
@@ -35,6 +36,10 @@ const sections = [
     ],
   },
   {
+    label: 'Clinical Records',
+    items: [{ to: '/admin/patients', label: 'Patients', icon: UserRound }],
+  },
+  {
     label: 'Engagement',
     items: [{ to: '/admin/inquiries', label: 'Inquiries', icon: Inbox }],
   },
@@ -52,7 +57,7 @@ export default function AdminSidebar({ onNavigate }) {
   return (
     <div className="flex h-full flex-col">
       <div className="flex h-16 items-center gap-2.5 px-5">
-        <span className="flex h-9 w-9 items-center justify-center rounded-md bg-brand-gradient text-primary-foreground shadow-sm shadow-primary/30">
+        <span className="flex h-9 w-9 items-center justify-center rounded-md bg-brand-gradient text-brand-foreground shadow-sm shadow-primary/30">
           <Cross className="h-4.5 w-4.5" />
         </span>
         <span className="text-sm font-bold leading-tight">
@@ -76,7 +81,7 @@ export default function AdminSidebar({ onNavigate }) {
                   className={({ isActive }) =>
                     cn(
                       'flex items-center gap-3 rounded-md px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground',
-                      isActive && 'bg-brand-gradient text-primary-foreground shadow-md shadow-primary/25 hover:bg-brand-gradient hover:text-primary-foreground'
+                      isActive && 'bg-brand-gradient text-brand-foreground shadow-md shadow-primary/25 hover:bg-brand-gradient hover:text-brand-foreground'
                     )
                   }
                 >

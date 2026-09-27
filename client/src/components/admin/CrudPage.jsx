@@ -31,6 +31,7 @@ export default function CrudPage({
   searchPlaceholder = 'Search...',
   newLabel,
   requireAdmin = false,
+  extraActions,
 }) {
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
@@ -46,6 +47,7 @@ export default function CrudPage({
 
   const items = data?.data || []
   const pagination = data?.pagination
+  const showActionsColumn = allowMutations || Boolean(extraActions)
 
   const openCreate = () => {
     setEditingItem(null)
@@ -105,19 +107,19 @@ export default function CrudPage({
                   {columns.map((col) => (
                     <TableHead key={col.key}>{col.header}</TableHead>
                   ))}
-                  {allowMutations && <TableHead className="w-24 text-right">Actions</TableHead>}
+                  {showActionsColumn && <TableHead className="w-32 text-right">Actions</TableHead>}
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {isLoading ? (
                   <TableRow>
-                    <TableCell colSpan={columns.length + 1} className="h-24 text-center text-muted-foreground">
+                    <TableCell colSpan={columns.length + (showActionsColumn ? 1 : 0)} className="h-24 text-center text-muted-foreground">
                       <Loader2 className="mx-auto h-5 w-5 animate-spin" />
                     </TableCell>
                   </TableRow>
                 ) : items.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={columns.length + 1} className="h-24 text-center text-muted-foreground">
+                    <TableCell colSpan={columns.length + (showActionsColumn ? 1 : 0)} className="h-24 text-center text-muted-foreground">
                       No records found.
                     </TableCell>
                   </TableRow>
@@ -127,19 +129,24 @@ export default function CrudPage({
                       {columns.map((col) => (
                         <TableCell key={col.key}>{col.cell ? col.cell(item) : item[col.key]}</TableCell>
                       ))}
-                      {allowMutations && (
-                        <TableCell className="text-right">
-                          <Button variant="ghost" size="icon" onClick={() => openEdit(item)}>
-                            <Pencil className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="text-destructive hover:text-destructive"
-                            onClick={() => setDeleteTarget(item)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
+                      {showActionsColumn && (
+                        <TableCell className="text-right whitespace-nowrap">
+                          {extraActions && extraActions(item)}
+                          {allowMutations && (
+                            <>
+                              <Button variant="ghost" size="icon" onClick={() => openEdit(item)}>
+                                <Pencil className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-destructive hover:text-destructive"
+                                onClick={() => setDeleteTarget(item)}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </>
+                          )}
                         </TableCell>
                       )}
                     </TableRow>

@@ -8,6 +8,7 @@ const Gallery = require('../models/Gallery');
 const Event = require('../models/Event');
 const Page = require('../models/Page');
 const Inquiry = require('../models/Inquiry');
+const Patient = require('../models/Patient');
 const User = require('../models/User');
 
 // GET /api/stats/overview - powers the admin dashboard summary cards
@@ -23,6 +24,7 @@ const getOverview = asyncHandler(async (req, res) => {
     pages,
     newInquiries,
     totalInquiries,
+    patients,
     users,
     recentInquiries,
     recentNews,
@@ -37,6 +39,7 @@ const getOverview = asyncHandler(async (req, res) => {
     Page.countDocuments(),
     Inquiry.countDocuments({ status: 'new' }),
     Inquiry.countDocuments(),
+    Patient.countDocuments(),
     User.countDocuments(),
     Inquiry.find().sort('-createdAt').limit(5),
     News.find().sort('-createdAt').limit(5).select('title status createdAt'),
@@ -44,7 +47,20 @@ const getOverview = asyncHandler(async (req, res) => {
 
   res.json({
     data: {
-      counts: { departments, staff, programs, services, news, gallery, events, pages, users, totalInquiries, newInquiries },
+      counts: {
+        departments,
+        staff,
+        programs,
+        services,
+        news,
+        gallery,
+        events,
+        pages,
+        users,
+        totalInquiries,
+        newInquiries,
+        patients,
+      },
       recentInquiries,
       recentNews,
     },

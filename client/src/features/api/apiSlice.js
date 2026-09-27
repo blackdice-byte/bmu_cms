@@ -16,6 +16,8 @@ export const apiSlice = createApi({
     'News',
     'Inquiry',
     'User',
+    'Patient',
+    'MedicalRecord',
     'Stats',
   ],
   endpoints: (builder) => ({
@@ -40,6 +42,8 @@ export const apiSlice = createApi({
     ...buildResourceEndpoints(builder, { path: 'news', tag: 'News' }),
     ...buildResourceEndpoints(builder, { path: 'inquiries', tag: 'Inquiry' }),
     ...buildResourceEndpoints(builder, { path: 'users', tag: 'User' }),
+    ...buildResourceEndpoints(builder, { path: 'patients', tag: 'Patient' }),
+    ...buildResourceEndpoints(builder, { path: 'medical-records', tag: 'MedicalRecord' }),
 
     submitInquiry: builder.mutation({
       query: (body) => ({ url: '/inquiries', method: 'post', data: body }),
@@ -114,6 +118,18 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
+
+  useListPatientQuery,
+  useGetPatientQuery,
+  useCreatePatientMutation,
+  useUpdatePatientMutation,
+  useDeletePatientMutation,
+
+  useListMedicalRecordQuery,
+  useGetMedicalRecordQuery,
+  useCreateMedicalRecordMutation,
+  useUpdateMedicalRecordMutation,
+  useDeleteMedicalRecordMutation,
 
   useSubmitInquiryMutation,
   useGetAvailabilityQuery,

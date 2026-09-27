@@ -9,6 +9,9 @@ const News = require('../models/News');
 const Gallery = require('../models/Gallery');
 const Event = require('../models/Event');
 const Inquiry = require('../models/Inquiry');
+const Patient = require('../models/Patient');
+const MedicalRecord = require('../models/MedicalRecord');
+const Counter = require('../models/Counter');
 
 const img = (seed, w = 800, h = 600) => `https://picsum.photos/seed/${seed}/${w}/${h}`;
 
@@ -27,6 +30,9 @@ const seedDatabase = async ({ destroy = false } = {}) => {
     Gallery.deleteMany(),
     Event.deleteMany(),
     Inquiry.deleteMany(),
+    Patient.deleteMany(),
+    MedicalRecord.deleteMany(),
+    Counter.deleteMany(),
   ]);
 
   console.log('Cleared existing collections.');
@@ -420,6 +426,107 @@ const seedDatabase = async ({ destroy = false } = {}) => {
     },
   ]);
   console.log('Seeded inquiries.');
+
+  const patients = await Patient.create([
+    {
+      fullName: 'Ebiwari Sokari',
+      dateOfBirth: new Date('1990-04-12'),
+      gender: 'female',
+      phone: '+2348034567890',
+      email: 'ebiwari.sokari@example.com',
+      address: '14 Swali Road, Yenagoa, Bayelsa State',
+      bloodGroup: 'O+',
+      genotype: 'AA',
+      allergies: 'Penicillin',
+      emergencyContactName: 'Tonye Sokari',
+      emergencyContactPhone: '+2348034567891',
+      department: byName('Obstetrics & Gynaecology')._id,
+      createdBy: admin._id,
+    },
+    {
+      fullName: 'Diseye Ogboru',
+      dateOfBirth: new Date('1985-11-02'),
+      gender: 'male',
+      phone: '+2348045678901',
+      email: 'diseye.ogboru@example.com',
+      address: '22 Kpansia Road, Yenagoa, Bayelsa State',
+      bloodGroup: 'A+',
+      genotype: 'AS',
+      allergies: 'None known',
+      emergencyContactName: 'Preye Ogboru',
+      emergencyContactPhone: '+2348045678902',
+      department: byName('Internal Medicine')._id,
+      createdBy: editor._id,
+    },
+    {
+      fullName: 'Miebaka Fyneface',
+      dateOfBirth: new Date('2018-07-20'),
+      gender: 'male',
+      phone: '+2348056789012',
+      email: '',
+      address: '5 Tombia Extension, Yenagoa, Bayelsa State',
+      bloodGroup: 'B+',
+      genotype: 'AA',
+      allergies: 'Seasonal allergies (dust)',
+      emergencyContactName: 'Boma Fyneface',
+      emergencyContactPhone: '+2348056789013',
+      department: byName('Paediatrics')._id,
+      createdBy: editor._id,
+    },
+  ]);
+  console.log('Seeded patients.');
+
+  await MedicalRecord.create([
+    {
+      patient: patients[0]._id,
+      visitDate: inDays(-21),
+      department: byName('Obstetrics & Gynaecology')._id,
+      doctor: staff[2]._id,
+      symptoms: 'Routine antenatal check-up, 28 weeks gestation.',
+      diagnosis: 'Normal singleton pregnancy, no complications observed.',
+      treatment: 'Continued folic acid and iron supplementation. Advised on nutrition and rest.',
+      notes: 'Foetal heartbeat normal. Next review scheduled in 4 weeks.',
+      vitals: { bloodPressure: '112/74', temperature: '36.7°C', weight: '68kg', height: '165cm' },
+      createdBy: editor._id,
+    },
+    {
+      patient: patients[0]._id,
+      visitDate: inDays(-7),
+      department: byName('Obstetrics & Gynaecology')._id,
+      doctor: staff[2]._id,
+      symptoms: 'Mild swelling in ankles.',
+      diagnosis: 'Mild pregnancy-related oedema, blood pressure within normal range.',
+      treatment: 'Advised to elevate legs when resting and reduce salt intake. Monitor at home.',
+      notes: 'No signs of pre-eclampsia. Follow-up appointment booked for 10:00 next Tuesday.',
+      vitals: { bloodPressure: '118/78', temperature: '36.8°C', weight: '69.5kg', height: '165cm' },
+      createdBy: editor._id,
+    },
+    {
+      patient: patients[1]._id,
+      visitDate: inDays(-14),
+      department: byName('Internal Medicine')._id,
+      doctor: staff[0]._id,
+      symptoms: 'Persistent headaches and dizziness over the past week.',
+      diagnosis: 'Stage 1 hypertension (140/92 mmHg).',
+      treatment: 'Started on Amlodipine 5mg daily. Recommended reduced salt intake and regular exercise.',
+      notes: 'Patient advised to monitor blood pressure at home and return in 2 weeks for review.',
+      vitals: { bloodPressure: '140/92', temperature: '36.9°C', weight: '82kg', height: '178cm' },
+      createdBy: editor._id,
+    },
+    {
+      patient: patients[2]._id,
+      visitDate: inDays(-3),
+      department: byName('Paediatrics')._id,
+      doctor: staff[3]._id,
+      symptoms: 'Fever, cough and mild difficulty breathing for 2 days.',
+      diagnosis: 'Acute upper respiratory tract infection.',
+      treatment: 'Prescribed paracetamol syrup for fever and a course of amoxicillin. Encouraged fluids and rest.',
+      notes: 'Chest clear on auscultation, no signs of pneumonia. Parents advised to return if symptoms worsen.',
+      vitals: { bloodPressure: '', temperature: '38.2°C', weight: '17kg', height: '104cm' },
+      createdBy: editor._id,
+    },
+  ]);
+  console.log('Seeded medical records.');
 
   console.log('\nDemo login credentials:');
   console.log('  Admin  -> admin@bmu.edu.ng / password123');

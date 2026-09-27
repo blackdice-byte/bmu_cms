@@ -18,7 +18,7 @@ const createCrudController = (Model, opts = {}) => {
       filter.$or = searchFields.map((field) => ({ [field]: { $regex: query.q, $options: 'i' } }));
     }
 
-    ['status', 'category', 'department', 'level', 'type'].forEach((key) => {
+    ['status', 'category', 'department', 'level', 'type', 'patient', 'doctor'].forEach((key) => {
       if (query[key]) filter[key] = query[key];
     });
 

@@ -26,6 +26,7 @@
   --color-ring: var(--ring);
   --color-brand-from: var(--brand-from);
   --color-brand-to: var(--brand-to);
+  --color-brand-foreground: var(--brand-foreground);
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --font-heading: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 2px);
@@ -61,6 +62,10 @@
   --brand-from: oklch(0.5 0.24 300);
   --brand-to: oklch(0.63 0.24 328);
   --brand-glow: oklch(0.75 0.14 305 / 0.4);
+  /* Always-light text for content placed on brand-gradient panels/buttons -
+     independent of --primary-foreground, which intentionally flips dark in
+     dark mode for ordinary primary-colored buttons. */
+  --brand-foreground: oklch(0.98 0.01 300);
 }
 
 .dark {
@@ -83,9 +88,11 @@
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 18%);
   --ring: oklch(0.72 0.18 300 / 0.5);
-  --brand-from: oklch(0.62 0.2 300);
-  --brand-to: oklch(0.68 0.2 328);
-  --brand-glow: oklch(0.5 0.2 305 / 0.45);
+  /* Kept rich/dark (not lightened like --primary) so the white text used
+     on brand-gradient panels, buttons and badges stays readable in both themes */
+  --brand-from: oklch(0.5 0.22 300);
+  --brand-to: oklch(0.6 0.24 328);
+  --brand-glow: oklch(0.55 0.2 305 / 0.5);
 }
 
 @layer base {

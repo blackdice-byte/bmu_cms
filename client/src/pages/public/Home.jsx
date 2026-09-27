@@ -60,7 +60,7 @@ export default function Home() {
               our university teaching hospital in Yenagoa, Bayelsa State.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-brand-gradient px-7 shadow-lg shadow-primary/25 hover:opacity-90">
+              <Button asChild size="lg" className="bg-brand-gradient text-brand-foreground px-7 shadow-lg shadow-primary/25 hover:opacity-90">
                 <Link to="/contact">
                   Book an Appointment <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -84,10 +84,10 @@ export default function Home() {
               className="pointer-events-none absolute -inset-6 rounded-lg blur-2xl"
               style={{ background: 'var(--brand-glow)' }}
             />
-            <div className="relative overflow-hidden rounded-lg bg-brand-gradient p-10 shadow-2xl shadow-primary/25 sm:p-14">
+            <div className="relative overflow-hidden rounded-lg bg-brand-gradient p-10 shadow-2xl shadow-primary/25 sm:p-14 text-brand-foreground">
               <Stethoscope className="absolute -right-6 -top-6 h-40 w-40 text-white/10" strokeWidth={1} />
               <HeartPulse className="absolute -bottom-8 left-6 h-32 w-32 text-white/10" strokeWidth={1} />
-              <div className="relative text-primary-foreground">
+              <div className="relative">
                 <ShieldCheck className="h-10 w-10 opacity-90" />
                 <p className="mt-6 text-sm font-medium uppercase tracking-wider opacity-80">Our commitment</p>
                 <p className="mt-2 text-2xl font-bold leading-snug">
@@ -302,12 +302,12 @@ export default function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-lg bg-brand-gradient px-8 py-16 text-center text-primary-foreground shadow-2xl shadow-primary/25 sm:px-16">
+        <div className="relative overflow-hidden rounded-lg bg-brand-gradient px-8 py-16 text-center text-brand-foreground shadow-2xl shadow-primary/25 sm:px-16">
           <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -right-16 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="relative">
             <h2 className="text-3xl font-bold sm:text-4xl">Need to see a doctor?</h2>
-            <p className="mx-auto mt-3 max-w-xl text-primary-foreground/80">
+            <p className="mx-auto mt-3 max-w-xl text-brand-foreground/80">
               Book an appointment with one of our specialists in just a few clicks, or send us a
               message and our team will get back to you.
             </p>

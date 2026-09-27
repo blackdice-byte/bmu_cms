@@ -15,6 +15,8 @@ const eventRoutes = require('./routes/eventRoutes');
 const pageRoutes = require('./routes/pageRoutes');
 const newsRoutes = require('./routes/newsRoutes');
 const inquiryRoutes = require('./routes/inquiryRoutes');
+const patientRoutes = require('./routes/patientRoutes');
+const medicalRecordRoutes = require('./routes/medicalRecordRoutes');
 const statsRoutes = require('./routes/statsRoutes');
 
 const app = express();
@@ -48,6 +50,8 @@ app.use('/api/events', eventRoutes);
 app.use('/api/pages', pageRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/inquiries', inquiryRoutes);
+app.use('/api/patients', patientRoutes);
+app.use('/api/medical-records', medicalRecordRoutes);
 app.use('/api/stats', statsRoutes);
 
 app.use(notFound);

@@ -46,7 +46,7 @@ export default function Login() {
     <div className="flex min-h-screen items-center justify-center bg-muted/40 p-4">
       <div className="w-full max-w-sm space-y-6">
         <div className="flex flex-col items-center gap-2 text-center">
-          <span className="flex h-12 w-12 items-center justify-center rounded-md bg-brand-gradient text-primary-foreground shadow-lg shadow-primary/25">
+          <span className="flex h-12 w-12 items-center justify-center rounded-md bg-brand-gradient text-brand-foreground shadow-lg shadow-primary/25">
             <Cross className="h-6 w-6" />
           </span>
           <h1 className="text-lg font-bold">BMU CMS Admin</h1>

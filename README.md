@@ -11,13 +11,15 @@ A full-stack content management system built as a pitch/demo for **Bayelsa Medic
 
 ## Features
 
-- **Public website**: Home, About, Departments, Doctors/Staff, Academic Programs, Hospital Services, News & Announcements, Gallery, Events, Contact & Appointment booking.
+- **Public website**: Home, About, Departments, Doctors/Staff, Academic Programs, Hospital Services, News & Announcements, Gallery, Events, and a Contact page with real availability-based appointment booking (calendar + live open time slots, checked against existing bookings).
 - **Admin dashboard**: overview stats, and full CRUD for Pages, News, Departments, Staff, Programs, Services, Gallery, Events and Inquiries.
+- **Patient registration & medical records**: register patients (with blood group, genotype, allergies, emergency contact) and record a full visit history per patient (diagnosis, symptoms, treatment, vitals) — admin-only, never exposed on any public route.
 - **Role-based access control (RBAC)** with three roles:
   - **Admin** — full access, including user management.
-  - **Editor** — can create/edit/delete content, cannot manage users.
+  - **Editor** — can create/edit/delete content, cannot manage users, cannot delete patients/records.
   - **Viewer** — read-only access to the admin dashboard.
 - **JWT authentication** with role claims enforced on every protected API route (not just hidden in the UI).
+- **Dark mode** with a manual toggle (persisted in localStorage), consistent across the public site and admin dashboard.
 - **Zero-config database**: if you don't provide a `MONGO_URI`, the API automatically spins up a temporary in-memory MongoDB and seeds it with realistic BMU demo data on every boot — perfect for a pitch demo. Point it at a real MongoDB/Atlas URI for persistent data.
 
 ## Project structure
@@ -95,4 +97,4 @@ cp client/.env.example client/.env
 
 ## Security notes (demo scope)
 
-This is a pitch/demo build. Before any production use, you'd also want: rate limiting on auth/contact endpoints, refresh-token rotation, file-upload support with virus scanning for real photo uploads (images currently use URLs), and an audit log for admin actions.
+This is a pitch/demo build. Before any production use, you'd also want: rate limiting on auth/contact endpoints, refresh-token rotation, file-upload support with virus scanning for real photo uploads (images currently use URLs), an audit log for admin actions, and — since patient/medical-record data is handled — encryption at rest, a real audit trail of who viewed what, and a data-retention/consent policy appropriate to wherever this is deployed (e.g. NDPR in Nigeria).

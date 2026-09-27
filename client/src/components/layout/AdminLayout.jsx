@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Outlet, Link } from 'react-router-dom'
 import { Menu, LogOut, ExternalLink } from 'lucide-react'
 import AdminSidebar from './AdminSidebar'
+import ThemeToggle from '@/components/ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -10,7 +11,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useAuth } from '@/hooks/useAuth'
 
 const roleColors = {
-  admin: 'bg-brand-gradient text-primary-foreground border-transparent',
+  admin: 'bg-brand-gradient text-brand-foreground border-transparent',
   editor: 'bg-accent text-accent-foreground border-transparent',
   viewer: 'bg-muted text-muted-foreground border-transparent',
 }
@@ -53,6 +54,7 @@ export default function AdminLayout() {
             </div>
 
             <div className="flex items-center gap-3">
+              <ThemeToggle />
               <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
                 <Link to="/" target="_blank" rel="noreferrer">
                   View site <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
@@ -62,7 +64,7 @@ export default function AdminLayout() {
                 <DropdownMenuTrigger asChild>
                   <button className="flex items-center gap-2 rounded-md ring-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                     <Avatar className="h-9 w-9">
-                      <AvatarFallback className="bg-brand-gradient text-xs text-primary-foreground">
+                      <AvatarFallback className="bg-brand-gradient text-xs text-brand-foreground">
                         {initials}
                       </AvatarFallback>
                     </Avatar>
